@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   varhandler.h                                       :+:      :+:    :+:   */
+/*   reallocstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/30 20:34:39 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/09/30 22:07:38 by Pablo Escob      ###   ########.fr       */
+/*   Created: 2024/08/04 17:25:22 by Pablo Escob       #+#    #+#             */
+/*   Updated: 2024/09/30 21:52:21 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VARHANDLER_H
-# define VARHANDLER_H
+#include "../hdrs/strhandler.h"
+#include "../../E_Codes/e_codes.h"
 
-# include "../../HashTable/hdrs/hashtable.h"
+char	*reallocstr(char *args, int size)
+{
+	char	*tmp;
 
-# define VARSIGNE	'='
+	tmp = malloc(size * sizeof(char));
+	if (!tmp)
+	{
+		ft_perror(STR_MALLOC_ERROR);
+		exit(-1);
+	}
+	ft_strcpy(tmp, args);
+	free(args);
+	return (tmp);
+}
 
-const char	*varhandler(const char *str, t_hashtable *hst);
-const char	*get_key_from_str(const char *str);
-
-#endif
+void	setnewparam(t_arg *argt)
+{
+	argt->size += (argt->size + 1) * 2;
+	argt->arg = reallocstr(argt->arg, argt->size);
+}

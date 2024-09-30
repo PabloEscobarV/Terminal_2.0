@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   varhandler.h                                       :+:      :+:    :+:   */
+/*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/30 20:34:39 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/09/30 22:07:38 by Pablo Escob      ###   ########.fr       */
+/*   Created: 2024/08/04 17:17:17 by Pablo Escob       #+#    #+#             */
+/*   Updated: 2024/09/30 21:51:57 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VARHANDLER_H
-# define VARHANDLER_H
+#include "../hdrs/strhandler.h"
+#include "../../libft/libft.h"
 
-# include "../../HashTable/hdrs/hashtable.h"
+int	checkvarend(char args)
+{
+	if (ft_isalnum(args) || ft_strchr(VARSYM, args))
+		return (E_OK);
+	return (E_KO);
+}
 
-# define VARSIGNE	'='
-
-const char	*varhandler(const char *str, t_hashtable *hst);
-const char	*get_key_from_str(const char *str);
-
-#endif
+int	checkvarfront(char args)
+{
+	if (ft_isalpha(args) || ft_strchr(VARSYM, args))
+		return (E_OK);
+	return (E_KO);
+}

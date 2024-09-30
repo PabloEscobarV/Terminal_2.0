@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   varhandler.h                                       :+:      :+:    :+:   */
+/*   subexicd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/30 20:34:39 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/09/30 22:07:38 by Pablo Escob      ###   ########.fr       */
+/*   Created: 2024/08/04 17:20:04 by Pablo Escob       #+#    #+#             */
+/*   Updated: 2024/09/30 21:54:19 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VARHANDLER_H
-# define VARHANDLER_H
+#include "../hdrs/strhandler.h"
+#include "../../libft/libft.h"
+#include "../../HashTable/hdrs/hashtable.h"
 
-# include "../../HashTable/hdrs/hashtable.h"
-
-# define VARSIGNE	'='
-
-const char	*varhandler(const char *str, t_hashtable *hst);
-const char	*get_key_from_str(const char *str);
-
-#endif
+char	*subexicd(t_arg *strt, t_hashtable *hst)
+{
+	return (ft_strdup("000"));
+}

@@ -5,63 +5,69 @@
 #                                                     +:+ +:+         +:+      #
 #    By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/09/30 21:43:28 by Pablo Escob       #+#    #+#              #
-#    Updated: 2024/09/30 22:00:12 by Pablo Escob      ###   ########.fr        #
+#    Created: 2024/08/04 17:51:31 by Pablo Escob       #+#    #+#              #
+#    Updated: 2024/09/30 22:01:47 by Pablo Escob      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = varhandler
-LIBNAME = lib$(NAME).a
-
-TESTNAME = test
+NAME = strhandler
+LIBNAME = libstrhandler.a
+TEST = test
 TESTFILE = test.c
-
-HASHTABLE = hashtable
-LIBFT = ft
+READLINE = readline
 
 SRCDIR = src
 OBJDIR = objs
 
-HASHTABLEDIR = ../HashTable
-LIBFTDIR = ../libft
-
+LIBFT = ft
 SRC = $(wildcard $(SRCDIR)/*.c)
 OBJ = $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+VARHANDLER = varhandler
+VARHANDLERDIR = ../$(VARHANDLER)
+LIBFTDIR = ../libft
+LIB_HST = -L$(VARHANDLERDIR) -l$(VARHANDLER)
 
-.PHONY: all, lib, run, re, clean, fclean
+CC = gcc
+CFLAGS = -Wall -Wextra
+LIBRS = -l$(READLINE)
+
+.PHONY: all, clean, fclean, re, lib, libfull, run
 
 all: lib
 
 lib: $(LIBNAME)
 
+libfull: $(LIBNAMEFULL)
+
+cobj: $(OBJ)
+
+run: $(LIBNAME)
+	$(CC) $(CFLAGS) $(TESTFILE) -L. -l$(NAME) $(LIBRS) -o $(TEST)
+	./$(TEST)
+
+re: fclean lib
+
 clean:
-	$(MAKE) -C $(HASHTABLEDIR) clean
+	$(MAKE) -C $(VARHANDLERDIR) clean
 	$(MAKE) -C $(LIBFTDIR) clean
 	rm -rf $(OBJDIR)
 
 fclean: clean
-	$(MAKE) -C $(HASHTABLEDIR) fclean
 	$(MAKE) -C $(LIBFTDIR) fclean
-	rm -rf $(NAME) $(LIBNAME) $(TESTNAME)
-
-re: fclean lib
-
-run: $(LIBNAME)
-	$(CC) $(CFLAGS) -g $(TESTFILE) -L. -l$(NAME) -lreadline -o $(TESTNAME)
-	./$(TESTNAME)
+	$(MAKE) -C $(VARHANDLERDIR) fclean
+	rm -rf $(NAME) $(LIBNAME) $(TEST)
 
 $(LIBNAME): $(OBJ)
-	$(MAKE) -C $(HASHTABLEDIR)
 	$(MAKE) -C $(LIBFTDIR)
-	ar -x $(HASHTABLEDIR)/lib$(HASHTABLE).a
+	$(MAKE) -C $(VARHANDLERDIR)
+	ar -x $(VARHANDLERDIR)/lib$(VARHANDLER).a
 	ar -x $(LIBFTDIR)/lib$(LIBFT).a
 	mv *.o $(OBJDIR)
 	ar -rc $(LIBNAME) $(OBJDIR)/*.o
-	ranlib $(LIBNAME)
+	ranlib $@
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	mkdir -p $(OBJDIR)
-	$(CC) -c -g $< -o $@
+	$(CC) -c $< -o $@
+

@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   varhandler.h                                       :+:      :+:    :+:   */
+/*   kef.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/30 20:34:39 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/09/30 22:07:38 by Pablo Escob      ###   ########.fr       */
+/*   Created: 2024/08/04 17:24:15 by Pablo Escob       #+#    #+#             */
+/*   Updated: 2024/08/04 17:32:15 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VARHANDLER_H
-# define VARHANDLER_H
+#include "../hdrs/strhandler.h"
 
-# include "../../HashTable/hdrs/hashtable.h"
+float		updatekef(float kef, int diff)
+{
+	kef += (float)(diff) * LAMDA;
+	if (kef < 0)
+		return (0.2);
+	if (kef < 1.0)
+		return (1.0 + kef);
+	return (kef);
+}
 
-# define VARSIGNE	'='
-
-const char	*varhandler(const char *str, t_hashtable *hst);
-const char	*get_key_from_str(const char *str);
-
-#endif
