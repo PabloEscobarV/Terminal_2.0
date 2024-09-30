@@ -1,0 +1,12 @@
+[submodule "E_Codes"]
+	path = E_Codes
+	url = git@github.com:PabloEscobarV/E_Codes.git
+[submodule "HashTable"]
+	path = HashTable
+	url = git@github.com:PabloEscobarV/HashTable.git
+[submodule "libft"]
+	path = libft
+	url = git@github.com:PabloEscobarV/libft.git
+[submodule "ft_printf"]
+	path = ft_printf
+	url = git@github.com:PabloEscobarV/ft_printf.git
