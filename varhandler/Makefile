@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/09/30 20:59:19 by Pablo Escob       #+#    #+#              #
-#    Updated: 2024/09/30 21:33:58 by Pablo Escob      ###   ########.fr        #
+#    Created: 2024/09/30 21:43:28 by Pablo Escob       #+#    #+#              #
+#    Updated: 2024/09/30 21:43:30 by Pablo Escob      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,11 @@ clean:
 fclean: clean
 	$(MAKE) -C $(HASHTABLEDIR) fclean
 	$(MAKE) -C $(LIBFTDIR) fclean
+<<<<<<< HEAD
 	rm -rf $(NAME) $(LIBNAME)
+=======
+	rm -rf $(NAME) $(LIBNAME) $(TESTNAME)
+>>>>>>> dce0d85 (Terminal: varhanler: added varhandler)
 
 re: fclean lib
 
