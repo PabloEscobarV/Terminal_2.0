@@ -6,14 +6,14 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 16:14:27 by blackrider        #+#    #+#             */
-/*   Updated: 2024/10/04 19:15:22 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/10/04 20:12:26 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/servicespltr.h"
 #include "../hdrs/splitter.h"
 
-t_crds	*crdcrdst(int i, int size)
+t_crds	*crt_crds(int i, int size)
 {
 	t_crds	*crds;
 
