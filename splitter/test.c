@@ -6,19 +6,42 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:56:40 by blackrider        #+#    #+#             */
-/*   Updated: 2024/09/29 20:41:27 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/10/05 19:51:53 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hdrs/servicespltr.h"
 #include "hdrs/splitter.h"
-#include "../../libft/libft.h"
-#include "../../get_next_line/get_next_line_bonus.h"
+#include "../libft/libft.h"
 #include "../strhandler/hdrs/strhandler.h"
-#include "../../hdrs/commondata.h"
+#include "../hdrs/terminalmacros.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <readline/readline.h>
+
+
+void	print_crd(char *str, int f, int r)
+{
+	ft_putchar('|');
+	while (f < r)
+	{
+		ft_putchar(*(str + f));
+		++f;
+	}
+	ft_putchar('|');
+	ft_putchar('\n');
+}
+
+void	print_result(char *str, t_llist *str_crd)
+{
+	while (str_crd)
+	{
+		printf("front: %d\trear: %d\n", ((t_crds *)(str_crd->data))->front,
+			((t_crds *)(str_crd->data))->end);
+		print_crd(str, ((t_crds *)(str_crd->data))->front,
+			((t_crds *)(str_crd->data))->end);
+		str_crd = str_crd->next;
+	}
+}
 
 int	main()
 {
@@ -32,9 +55,8 @@ int	main()
 	tmpt.qts = ft_strdup("\"\'");
 	tmpt.substr = ft_split(SUBSTR, SPLTCH);
 	tmpt.subend = ft_split(SUBEND, SPLTCH);
-	splqt = crtsplqtt(QTS, RDR, SPLN, SPLTS);
+	splqt = crtsplqtt(QTS, SPLTS);
 	hashtable = crthashtable(64);
-	printmatrix(splqt->spln);
 	while (1)
 	{
 		line = readline("Pablo Escobar:\t");
@@ -42,9 +64,10 @@ int	main()
 			break ;
 		printf("%s\n", line);
 		str = strhandler(line, &tmpt, hashtable);
-		llst = spliter(str, splqt);
-		llistiter(llst, printllist);
-		llistclear(&llst, freeargt);
+		printf("DATA FROM STRHANDLER:\t%s\n", str);
+		llst = splitter(str, splqt);
+		print_result(line, llst);
+		llistclear(&llst, freecrds);
 		free(str);
 		free(line);
 	}
@@ -55,6 +78,32 @@ int	main()
 	ft_free_d((void **)tmpt.subend);
 	return (0);
 }
+
+
+// int	main()
+// {
+// 	char	*line;
+// 	t_splqt	splqt;
+// 	t_llist	*str_crds;
+
+// 	splqt.qts = (t_cchar **)ft_split(QTS, SPLTCH);
+// 	splqt.splts = (t_cchar **)ft_split(SPLTS, SPLTCH);
+// 	while (1)
+// 	{
+// 		line = readline("Pablo Escobar:\t");
+// 		if (!ft_strcmp(line, "exit"))
+// 			break ;
+// 		printf("ENTERED LINE:\t%s\n", line);
+// 		str_crds = splitter(line, &splqt);
+// 		print_result(line, str_crds);
+// 		free(line);
+// 		llistclear(&str_crds, freecrds);
+// 	}
+// 	ft_free_d((void **)splqt.qts);
+// 	ft_free_d((void **)splqt.splts);
+// 	free(line);
+// }
+
 
 // int	main()
 // {

@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   t_splqt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: black <black@student.42.fr>                +#+  +:+       +#+        */
+/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 19:02:06 by blackrider        #+#    #+#             */
-/*   Updated: 2024/10/03 16:44:21 by black            ###   ########.fr       */
+/*   Updated: 2024/10/05 19:43:15 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hdrs/servicespltr.h"
 #include "../hdrs/splitter.h"
 #include "../../hdrs/terminalmacros.h"
 
