@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 16:14:27 by blackrider        #+#    #+#             */
-/*   Updated: 2024/10/04 20:12:26 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/10/05 16:36:09 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@ t_crds	*crt_crds(int i, int size)
 	return (crds);
 }
 
-void	*freecrds(t_crds *crds)
+void	freecrds(void *crds)
 {
 	free(crds);
 	crds = NULL;
-	return (crds);
 }

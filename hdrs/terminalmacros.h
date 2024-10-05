@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 20:33:12 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/09/30 20:33:43 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/10/05 16:17:37 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@
 #define QTS			"\" \'"
 #define SPLN		"|| $$ | $"
 #define RDR			">> > <"
-#define SPLTS		"<< >> || < > | \" \'"
+#define SPLTS		"<< >> || < > |"
 
 #endif
