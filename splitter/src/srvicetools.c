@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_crds.c                                           :+:      :+:    :+:   */
+/*   srvicetools.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/28 16:14:27 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/25 12:56:47 by polenyc          ###   ########.fr       */
+/*   Created: 2024/07/26 14:42:33 by Pablo Escob       #+#    #+#             */
+/*   Updated: 2024/07/26 22:29:35 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/servicespltr.h"
 #include "../hdrs/splitter.h"
+#include <stdio.h>
 
-t_crds	*crdcrdst(int i, int size, int strsize)
+void	printllist(void *data)
 {
-	t_crds	*crds;
-
-	crds = malloc(sizeof(t_crds));
-	if (!crds)
-		return (NULL);
-	crds->i = i;
-	crds->size = size;
-	crds->strsize = strsize;
-	return (crds);
+	printf("[0]: %d\t[1]: %d\t|%s|\n", ((t_arg *)(data))->x,
+		((t_arg *)(data))->size, ((t_arg *)(data))->arg);
 }
 
-void	*freecrds(t_crds *crds)
+void	printmatrix(t_cchar **matrix)
 {
-	free(crds);
-	crds = NULL;
-	return (crds);
+	if (!matrix)
+		return ;
+	while (*matrix)
+	{
+		printf("%s\n", *matrix);
+		++matrix;
+	}
 }
