@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:56:40 by blackrider        #+#    #+#             */
-/*   Updated: 2024/10/05 19:51:53 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/10/07 22:02:39 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../libft/libft.h"
 #include "../strhandler/hdrs/strhandler.h"
 #include "../hdrs/terminalmacros.h"
+#include "../varhandler/hdrs/varhandler.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <readline/readline.h>
@@ -43,41 +44,100 @@ void	print_result(char *str, t_llist *str_crd)
 	}
 }
 
+void	printllist(void *data)
+{
+	printf("[0]: %d\t[1]: %d\t|%s|\n", ((t_str_crd *)(data))->front,
+		((t_str_crd *)(data))->end, ((t_str_crd *)(data))->str);
+}
+
 int	main()
 {
-	char		*str;
+	char		*argt;
 	char		*line;
+	char		*tmp;
+	char		**substr;
+	char		**subend;
+	t_hashtable	*hst;
 	t_llist		*llst;
 	t_splqt		*splqt;
 	t_strtosub	tmpt;
-	t_hashtable *hashtable;
 	
+	hst = crthashtable(64);
 	tmpt.qts = ft_strdup("\"\'");
 	tmpt.substr = ft_split(SUBSTR, SPLTCH);
 	tmpt.subend = ft_split(SUBEND, SPLTCH);
 	splqt = crtsplqtt(QTS, SPLTS);
-	hashtable = crthashtable(64);
 	while (1)
 	{
 		line = readline("Pablo Escobar:\t");
 		if (!ft_strcmp(line, "exit"))
 			break ;
-		printf("%s\n", line);
-		str = strhandler(line, &tmpt, hashtable);
-		printf("DATA FROM STRHANDLER:\t%s\n", str);
-		llst = splitter(str, splqt);
-		print_result(line, llst);
-		llistclear(&llst, freecrds);
-		free(str);
+		printf("ENTERED LINE:\t%s\n", line);
+		tmp = varhandler(line, hst);
+		if ((*tmp == *line))
+		{
+			argt = strhandler(line, &tmpt, hst);
+			printf("STRHANDLER OUTPUT:\t|%s|\n", argt);
+			llst = splitter(argt, splqt);
+			llistiter(llst, printllist);
+			// print_result(line, llst);
+			llistclear(&llst, free_t_str_crd_t);
+			free(argt);
+		}
+		if (*tmp && (*tmp != *line))
+			printf("minishell: %s: command not found...\n", tmp);
 		free(line);
 	}
-	freesplqtt(splqt);
-	free(tmpt.qts);
 	free(line);
-	ft_free_d((void **)tmpt.substr);
 	ft_free_d((void **)tmpt.subend);
+	ft_free_d((void **)tmpt.substr);
+	free(tmpt.qts);
+	freehashtablet(hst);
+	freesplqtt(splqt);
 	return (0);
 }
+
+// int	main()
+// {
+// 	char		*str;
+// 	char		*line;
+// 	t_llist		*llst;
+// 	t_splqt		*splqt;
+// 	t_strtosub	tmpt;
+// 	t_hashtable *hashtable;
+	
+// 	tmpt.qts = ft_strdup("\"\'");
+// 	tmpt.substr = ft_split(SUBSTR, SPLTCH);
+// 	tmpt.subend = ft_split(SUBEND, SPLTCH);
+// 	splqt = crtsplqtt(QTS, SPLTS);
+// 	hashtable = crthashtable(64);
+// 	while (1)
+// 	{
+// 		line = readline("Pablo Escobar:\t");
+// 		if (!ft_strcmp(line, "exit"))
+// 			break ;
+// 		printf("%s\n", line);
+// 		str = varhandler(line, hashtable);
+// 		if (*str == *line)
+// 		{
+// 			str = strhandler(line, &tmpt, hashtable);
+// 			printf("DATA FROM STRHANDLER:\t%s\n", str);
+// 			llst = splitter(str, splqt);
+// 			print_result(line, llst);
+// 			llistclear(&llst, freecrds);
+// 			free(str);
+// 		}
+// 		if (*str && (*str != *line))
+// 			printf("minishell: %s: command not found...\n", str);
+// 		free(line);
+// 	}
+// 	freesplqtt(splqt);
+// 	free(tmpt.qts);
+// 	free(line);
+// 	ft_free_d((void **)tmpt.substr);
+// 	ft_free_d((void **)tmpt.subend);
+// 	return (0);
+// }
 
 
 // int	main()

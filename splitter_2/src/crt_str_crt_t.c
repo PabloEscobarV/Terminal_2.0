@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 20:11:24 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/10/06 21:05:07 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/10/07 21:37:56 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,12 @@ static void	skip_cpaces(t_cchar *str, int *front, int *rear)
 
 t_str_crd	*crt_str_crd_t(t_cchar *str, int front, int rear)
 {
-	int			f;
-	int			r;
 	t_str_crd	*str_crd_t;
 
-	f = front;
-	r = rear;
-	skip_cpaces(str, &f, &r);
-	if (f > r || (f == r && str[f] == SPCCH))
-		return (NULL);
 	str_crd_t = malloc(sizeof(t_str_crd));
 	str_crd_t->front = front;
 	str_crd_t->end = rear;
-	str_crd_t->str = ft_strldup(str + f, r - f + 1);
+	str_crd_t->str = ft_strldup(str + front, rear - front);
 	return (str_crd_t);
 }
 

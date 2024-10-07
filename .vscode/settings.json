@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "terminalmacros.h": "c",
+        "readline.h": "c",
+        "libft.h": "c",
+        "stdlib.h": "c",
+        "strhandler.h": "c",
+        "stdio.h": "c"
+    }
+}
