@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:56:40 by blackrider        #+#    #+#             */
-/*   Updated: 2024/10/07 22:02:39 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/10/10 23:14:24 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ void	print_result(char *str, t_llist *str_crd)
 
 void	printllist(void *data)
 {
-	printf("[0]: %d\t[1]: %d\t|%s|\n", ((t_str_crd *)(data))->front,
-		((t_str_crd *)(data))->end, ((t_str_crd *)(data))->str);
+	printf("[0]: %d\t[1]: %d\tsplt: |%s|\t|%s|\n", ((t_str_crd *)(data))->front,
+		((t_str_crd *)(data))->end, ((t_str_crd *)(data))->splt,
+		((t_str_crd *)(data))->str);
 }
 
 int	main()

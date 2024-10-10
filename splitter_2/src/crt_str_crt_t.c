@@ -6,11 +6,12 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 20:11:24 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/10/10 22:19:08 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/10/10 23:31:11 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/splitter.h"
+#include "../hdrs/splitter_srv.h"
 #include "../../hdrs/terminalmacros.h"
 
 t_str_crd	*crt_str_crd_t(t_cchar *str, int front, int rear)
@@ -21,6 +22,7 @@ t_str_crd	*crt_str_crd_t(t_cchar *str, int front, int rear)
 	str_crd_t->front = front;
 	str_crd_t->end = rear;
 	str_crd_t->str = ft_strldup(str + front, rear - front);
+	str_crd_t->splt = NULL;
 	return (str_crd_t);
 }
 

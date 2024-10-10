@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 16:40:07 by black             #+#    #+#             */
-/*   Updated: 2024/10/10 22:02:43 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/10/10 23:34:03 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,35 @@
 #include "../../libft/libft.h"
 #include <stdio.h>
 #include <readline/readline.h>
+
+static char	*set_splt(t_cchar *str, t_splqt *splt)
+{
+	int		i;
+
+	if (!(*str))
+		return (NULL);
+	i = cmpstrv(str, splt->qts);
+	if (splt->qts[i])
+		return (ft_strdup(splt->qts[i]));
+	i = cmpstrv(str, splt->splts);
+	return (ft_strdup(splt->splts[i]));
+}
+
+void	set_node_data(t_cchar *str, int i, t_crds *crd, t_splqt *splqt)
+{
+	t_str_crd	*strcrd;
+	t_llist		*node;
+
+	if (i < crd->front)
+	{
+		strcrd = crt_str_crd_t(str, i, crd->front);
+		if (strcrd)
+		{
+			strcrd->splt = set_splt(str);
+			node = llistnewnode(strcrd);
+		}
+	}
+}
 
 t_llist	*set_node(t_cchar *str, t_crds *crd, t_splqt *splqt)
 {

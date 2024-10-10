@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:20:39 by blackrider        #+#    #+#             */
-/*   Updated: 2024/10/07 22:05:06 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/10/10 23:34:16 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_str_crd
 {
 	int		front;
 	int		end;
+	char	*splt;
 	char	*str;
 }			t_str_crd;
 
