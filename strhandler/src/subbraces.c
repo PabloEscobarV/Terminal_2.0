@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 17:20:24 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/09/30 21:54:11 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/10/10 22:19:34 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*subbraces(t_arg *strt, char *end, t_hashtable *hst)
 		strt->size = -1;
 		return (ft_perror("Command not found"));
 	}
-	res = getvar(strt, i - strt->x, hst);
+	res = (char *)getvar(strt, i - strt->x, hst);
 	++(strt->x);
 	return (res);
 }

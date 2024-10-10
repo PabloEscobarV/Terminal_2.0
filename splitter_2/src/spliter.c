@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 16:40:07 by black             #+#    #+#             */
-/*   Updated: 2024/10/07 21:40:18 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/10/10 22:02:43 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ t_llist	*set_node(t_cchar *str, t_crds *crd, t_splqt *splqt)
 
 t_llist	*splitter(t_cchar *str, t_splqt *splqt)
 {
+	int		i;
 	t_crds	crd;
 	t_llist	*str_crds;
-	t_llist	*tmp;
 
 	if (!str)
 		return (NULL);
@@ -56,9 +56,11 @@ t_llist	*splitter(t_cchar *str, t_splqt *splqt)
 	str_crds = NULL;
 	while (crd.front < crd.end)
 	{
-		tmp = set_node(str, &crd, splqt);
-		llist_concatenate(&str_crds, tmp);
-		++crd.front;
+		llist_concatenate(&str_crds, set_node(str, &crd, splqt));
+		i = ft_strlen(splqt->splts[cmpstrv(str + crd.front, splqt->splts)]);
+		if (!i)
+			i = ft_strlen(splqt->qts[cmpstrv(str + crd.front, splqt->qts)]);
+		crd.front += i;
 	}
 	return (str_crds);
 }

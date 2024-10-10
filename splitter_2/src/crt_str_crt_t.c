@@ -6,21 +6,12 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 20:11:24 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/10/07 21:37:56 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/10/10 22:19:08 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/splitter.h"
 #include "../../hdrs/terminalmacros.h"
-
-static void	skip_cpaces(t_cchar *str, int *front, int *rear)
-{
-	while ((*front < *rear) && *(str + *front) == SPCCH)
-		++(*front);
-	--(*rear);
-	while ((*front < *rear) && *(str + *rear) == SPCCH)
-		--(*rear);
-}
 
 t_str_crd	*crt_str_crd_t(t_cchar *str, int front, int rear)
 {
