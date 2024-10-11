@@ -24,8 +24,6 @@ typedef struct s_crds
 
 typedef struct s_str_crd
 {
-	int		front;
-	int		end;
 	char	*splt;
 	char	*str;
 }			t_str_crd;
@@ -44,6 +42,6 @@ void		*freesplqtt(t_splqt *splqt);
 t_crds		*crt_crds(int i, int size);
 void		freecrds(void *crds);
 ///////////////////////////////T_STR_CRD///////////////////////////////
-t_str_crd	*crt_str_crd_t(t_cchar *str, int front, int rear);
+t_str_crd	*crt_str_crd_t(t_cchar *str, int size);
 void		free_t_str_crd_t(void *strcrd);
 #endif

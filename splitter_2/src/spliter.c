@@ -29,20 +29,45 @@ static char	*set_splt(t_cchar *str, t_splqt *splt)
 	return (ft_strdup(splt->splts[i]));
 }
 
-void	set_node_data(t_cchar *str, int i, t_crds *crd, t_splqt *splqt)
+t_llist	*set_node_data(t_cchar *str, int i, t_crds *crd, t_splqt *splqt)
+{
+	int			spl_i;
+	t_str_crd	*strcrd;
+	t_llist		*node;
+
+	node = NULL;
+	if (i < crd->front)
+	{
+		spl_i = cmpstrv(str + i, splqt->splts);
+		strcrd = crt_str_crd_t(str + i + ft_strlen(splqt->splts[spl_i]),
+			crd->front - i);
+		if (strcrd)
+		{
+			if (!splqt->splts[spl_i])
+				i = crd->front;
+			strcrd->splt = set_splt(str + i, splqt);
+			node = llistnewnode(strcrd);
+		}
+	}
+	return (node);
+}
+
+t_llist	*set_node_str(t_cchar *str, int i, t_crds *crd, t_splqt* splqt)
 {
 	t_str_crd	*strcrd;
 	t_llist		*node;
 
-	if (i < crd->front)
+	node = NULL;
+	if (i)
 	{
-		strcrd = crt_str_crd_t(str, i, crd->front);
+		strcrd = crt_str_crd_t(str + crd->front + 1, crd->front + i - 1);
 		if (strcrd)
 		{
-			strcrd->splt = set_splt(str);
+			strcrd->splt = set_splt(str + crd->front, splqt);
 			node = llistnewnode(strcrd);
 		}
 	}
+	return (node);
 }
 
 t_llist	*set_node(t_cchar *str, t_crds *crd, t_splqt *splqt)
@@ -50,24 +75,13 @@ t_llist	*set_node(t_cchar *str, t_crds *crd, t_splqt *splqt)
 	int			i;
 	int			qts_crd;
 	t_llist		*node;
-	t_str_crd	*strcrd;
 
-	node = NULL;
 	i = crd->front;
 	qts_crd = set_crd(str, crd, splqt);
 	if (!i)
 		i = set_crd_front(str, crd, splqt);
-	if (i < crd->front)
-	{
-		strcrd = crt_str_crd_t(str, i, crd->front);
-		if (strcrd)
-			node = llistnewnode(strcrd);
-	}
-	if (!qts_crd)
-		return (node);
-	strcrd = crt_str_crd_t(str, crd->front + 1, crd->front + qts_crd);
-	if (strcrd)
-		llistadd_back(&node, llistnewnode(strcrd));
+	node = set_node_data(str, i, crd, splqt);
+	llistadd_back(&node, set_node_str(str, qts_crd, crd, splqt));
 	crd->front += qts_crd;
 	return (node);
 }
@@ -94,13 +108,10 @@ t_llist	*splitter(t_cchar *str, t_splqt *splqt)
 	return (str_crds);
 }
 
-// void	printdata(void *data)
+// void	printllist(void *data)
 // {
-// 	t_str_crd	*strcrd;
-
-// 	strcrd = (t_str_crd *)data;
-// 	printf("front: %d\tend: %d\n|%s|\n", strcrd->front,
-// 		strcrd->end, strcrd->str);
+// 	printf("splt: |%s|\t|%s|\n", ((t_str_crd *)(data))->splt,
+// 		((t_str_crd *)(data))->str);
 // }
 
 // int	main()
@@ -118,7 +129,7 @@ t_llist	*splitter(t_cchar *str, t_splqt *splqt)
 // 			break ;
 // 		printf("ENTERED LINE:\t%s\n", line);
 // 		str_crds = splitter(line, &splqt);
-// 		llistiter(str_crds, printdata);
+// 		llistiter(str_crds, printllist);
 // 		free(line);
 // 		llistclear(&str_crds, free_t_str_crd_t);
 // 	}

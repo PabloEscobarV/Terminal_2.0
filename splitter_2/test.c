@@ -46,8 +46,7 @@ void	print_result(char *str, t_llist *str_crd)
 
 void	printllist(void *data)
 {
-	printf("[0]: %d\t[1]: %d\tsplt: |%s|\t|%s|\n", ((t_str_crd *)(data))->front,
-		((t_str_crd *)(data))->end, ((t_str_crd *)(data))->splt,
+	printf("splt: |%s|\t|%s|\n", ((t_str_crd *)(data))->splt,
 		((t_str_crd *)(data))->str);
 }
 

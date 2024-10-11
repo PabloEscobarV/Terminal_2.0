@@ -14,14 +14,12 @@
 #include "../hdrs/splitter_srv.h"
 #include "../../hdrs/terminalmacros.h"
 
-t_str_crd	*crt_str_crd_t(t_cchar *str, int front, int rear)
+t_str_crd	*crt_str_crd_t(t_cchar *str, int size)
 {
 	t_str_crd	*str_crd_t;
 
 	str_crd_t = malloc(sizeof(t_str_crd));
-	str_crd_t->front = front;
-	str_crd_t->end = rear;
-	str_crd_t->str = ft_strldup(str + front, rear - front);
+	str_crd_t->str = ft_strldup(str, size);
 	str_crd_t->splt = NULL;
 	return (str_crd_t);
 }

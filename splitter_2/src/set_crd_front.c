@@ -32,9 +32,9 @@ int	set_crd_front(t_cchar *str, t_crds *crd, t_splqt *splt)
 		--i;
 	if (i >= 0)
 		return (E_OK);
+	front = crd->front;
 	crd->front += ft_strlen(
 			splt->splts[cmpstrv(str + crd->front, splt->splts)]);
-	front = crd->front;
 	skip_spaces(str, crd);
 	while (crd->front < crd->end && !ft_isspace(str[crd->front])
 		&& !splt->splts[cmpstrv(str + crd->front, splt->splts)])
