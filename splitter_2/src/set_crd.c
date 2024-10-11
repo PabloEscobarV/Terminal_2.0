@@ -12,6 +12,7 @@
 
 #include "../../hdrs/terminalmacros.h"
 #include "../hdrs/splitter.h"
+#include <stdio.h>
 
 int	cmpstrv(t_cchar *str, t_cchar **splt)
 {
@@ -33,7 +34,7 @@ int	check_is_close_qt(t_cchar *str, t_crds *crd, t_cchar **qts)
 		return (0);
 	qts += i;
 	i = ft_strlen(*qts);
-	while (str[i] && !(str[i - 1] != BKSLASH && ft_strlcmp(str + i, *qts)))
+	while (str[i] && !(str[i - 1] != '\\' && ft_strlcmp(str + i, *qts)))
 		++i;
 	return (i);
 }
